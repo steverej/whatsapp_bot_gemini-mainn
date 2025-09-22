@@ -24,18 +24,14 @@ def ai_response(ask):
 
 @app.route('/', methods=["GET"])
 def check_webhook():
-	if request.method == 'GET':
-		mode = request.args.get('hub.mode')
-		verify_token = request.args.get('hub.verify_token')
-		challenge = request.args.get('hub.challenge')
+    mode = request.args.get('hub.mode')
+    verify_token = request.args.get('hub.verify_token')
+    challenge = request.args.get('hub.challenge')
 
-		if mode and verify_token:
-			if mode == 'subscribe' and verify_token == VERIFY_TOKEN:
-				return Response(challenge,200)
-			else:
-				return Response("",403)
-		else:
-			return
+    if mode and verify_token and mode == 'subscribe' and verify_token == VERIFY_TOKEN:
+        return Response(challenge, 200)
+    else:
+        return Response("Webhook verification failed.", 403)
 
 @app.route('/', methods=["POST"])
 def send_message():

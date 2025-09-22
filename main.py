@@ -37,31 +37,49 @@ def check_webhook():
 		else:
 			return
 
-@app.route('/',methods=["POST"])
+@app.route('/', methods=["POST"])
 def send_message():
-	if request.method == 'POST':
-		body = request.get_json()
-		print(body)
+    if request.method == 'POST':
+        body = request.get_json()
+        print(body)
 
-		if body["entry"][0]["changes"][0]['value']["messages"][0]["from"] == PHONE_NUMBER:
-			user_question = body["entry"][0]["changes"][0]['value']["messages"][0]["text"]["body"]
-
-			response = ai_response(user_question)
-			url = "https://graph.facebook.com/v18.0/115446774859882/messages"
-			headers = {
-				f"Authorization": f"Bearer {WHAT_TOKEN}",
-				"Content-Type": "application/json"
-			}
-			data = {
-				"messaging_product": "whatsapp",
-				"to": PHONE_NUMBER,
-				"type": "text",
-				"text": {"body": response}
-			}
-
-			response = requests.post(url, json=data, headers=headers)
-			print(response.text)
-			return Response(status=200)
+        # The rest of your code to process the message...
+        try:
+            # Check if the message is from the desired phone number
+            if body["entry"][0]["changes"][0]['value']["messages"][0]["from"] == PHONE_NUMBER:
+                user_question = body["entry"][0]["changes"][0]['value']["messages"][0]["text"]["body"]
+                response_text = ai_response(user_question)
+                
+                url = "https://graph.facebook.com/v18.0/115446774859882/messages"
+                headers = {
+                    "Authorization": f"Bearer {WHAT_TOKEN}",
+                    "Content-Type": "application/json"
+                }
+                data = {
+                    "messaging_product": "whatsapp",
+                    "to": PHONE_NUMBER,
+                    "type": "text",
+                    "text": {"body": response_text}
+                }
+                
+                # Send the message and handle the response
+                requests.post(url, json=data, headers=headers)
+                print("Message sent successfully")
+                return Response(status=200) # <-- Successful path
+            
+            else:
+                # If the sender is not the specified phone number, just return 200 to acknowledge receipt.
+                return Response(status=200)
+        
+        except (KeyError, IndexError) as e:
+            # Log the error for debugging
+            print(f"Error processing webhook payload: {e}")
+            # In case of a malformed request, still return a 200 OK to prevent re-delivery attempts.
+            return Response(status=200)
+    
+    # This return is for cases where request.method is not 'POST', though the decorator prevents this.
+    # It's good practice to have a final return for all paths.
+    return Response(status=405) # Method Not Allowed
 
 
 

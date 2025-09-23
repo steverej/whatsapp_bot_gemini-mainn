@@ -60,38 +60,39 @@ def send_message():
     logging.info(f"Webhook payload: {body}")
 
     try:
+        # Extract sender and message body from the payload
         sender = body["entry"][0]["changes"][0]['value']["messages"][0]["from"]
-        logging.info(f"Message received from: {sender}")
+        user_question = body["entry"][0]["changes"][0]['value']["messages"][0]["text"]["body"]
+        logging.info(f"Message received from: {sender} with question: {user_question}")
 
-        if sender == PHONE_NUMBER:
-            user_question = body["entry"][0]["changes"][0]['value']["messages"][0]["text"]["body"]
-            logging.info(f"User question: {user_question}")
+        # Get AI response
+        response_text = ai_response(user_question)
 
-            response_text = ai_response(user_question)
+        # Prepare and send the response message back to the sender
+        url = "https://graph.facebook.com/v18.0/115446774859882/messages"
+        headers = {
+            "Authorization": f"Bearer {WHAT_TOKEN}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "messaging_product": "whatsapp",
+            # Use the sender's number as the recipient
+            "to": sender,
+            "type": "text",
+            "text": {"body": response_text}
+        }
 
-            url = "https://graph.facebook.com/v18.0/115446774859882/messages"
-            headers = {
-                "Authorization": f"Bearer {WHAT_TOKEN}",
-                "Content-Type": "application/json"
-            }
-            data = {
-                "messaging_product": "whatsapp",
-                "to": PHONE_NUMBER,
-                "type": "text",
-                "text": {"body": response_text}
-            }
-
-            resp = requests.post(url, json=data, headers=headers)
-            logging.info(f"Message sent to WhatsApp. Response status: {resp.status_code}, body: {resp.text}")
-            return Response(status=200)
-        else:
-            logging.info(f"Ignored message from unknown sender: {sender}")
-            return Response(status=200)
+        resp = requests.post(url, json=data, headers=headers)
+        logging.info(f"Message sent to WhatsApp. Response status: {resp.status_code}, body: {resp.text}")
+        return Response(status=200)
 
     except (KeyError, IndexError) as e:
+        # Handle cases where the payload is not a message (e.g., status updates)
+        logging.warning("Received a non-message payload or a malformed message.")
         logging.error(f"Error processing webhook payload: {e}")
         return Response(status=200)
 
+    # This line is unreachable due to the structure, but remains for completeness.
     return Response(status=405)
 
 if __name__ == '__main__':

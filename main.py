@@ -69,7 +69,7 @@ def send_message():
         response_text = ai_response(user_question)
 
         # Prepare and send the response message back to the sender
-        url = "https://graph.facebook.com/v18.0/1055015529868740/messages"
+        url = "https://graph.facebook.com/v18.0/794992693700128/messages"
         headers = {
             "Authorization": f"Bearer {WHAT_TOKEN}",
             "Content-Type": "application/json"

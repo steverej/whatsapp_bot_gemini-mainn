@@ -1,0 +1,60 @@
+# About the ZappQ App
+ZappQ is a mobile application that allows users to easily find and book appointments with specialized doctors. Our goal is to make healthcare more accessible.
+
+# How to Book an Appointment
+1. On the home screen, you can search for a doctor by name or you can select the hospitals available by clicking 'See all' button.
+2. Select a doctor from the search in home screen to view their profile, qualifications, and available days.
+3. Select a clinic from the list  from home screen and choose the doctors in that list by searching by name or speciality or by selecting.
+4. Choose a date and select the time session that works for you and tap "Book Appointment".
+5. If booking for self, then tap "Book Appointment".
+6. If booking for others, then click 'Booking for others?' and enter the patient details(name, age, phone number and sex) and then again tap "Book Appointment".
+7. You will receive a confirmation in the app and on your WhatsApp number.
+
+# App Features
+1. On the home screen, you can set your location in the top left corner where it will show you the hospitals available in that area.
+2. You can edit your profile by clicking the "Settings" section and then clicking "My Account".
+3. You can add a doctor or hospital as your favourites by tapping "♡".
+4. You can find your favourite doctor or hospital by going to "Settings" and then "My Favourites".
+5. You can know about your notifications in the home screen in the top right corner by clicking on the bell symbol.
+6. You can book Lab Tests in the home screen by clicking on the 'Lab Tests' section.
+7. You can view your health data or health history in the Electronic Health Records section in the home screen by clicking on "See All" and then selecting the particular file.
+8. On the home screen, below you can find "Our Specializations" section where you can see various specializations and by clicking on one of them, you can find the doctors in that particular specialization. 
+9. If you wish to access government medical records, prescriptions & e-appointments, you can scroll dow to the end in the home screen and click "Visit" to enter eHealth Kerala.
+10. You can set up your location by going to "Settings" and under App Settings, turn on "Set Location".
+11. You can log out or delete your account by going to the "Settings" sections and then scroll down to end.
+
+# Appointments
+1. You can find your upcoming appointments or lab tests in the "Appointments" section.
+2. If no appointments, you can proceed by clicking "Book Appointment".
+
+# Lab Tests
+1. You can book Lab Tests in the home screen by clicking on the 'Lab Tests' section.
+2. You can select the "Featured Packages" or from "Recommended Packages" to get a huge discount/offer for lab tests.
+3. You can select "Diagnostic Tests" or "Routine Tests" for a particular/specific lab test.
+4. Once selecting a specific package, you can view the tests coming with that as well as the details and then proceed by clicking "Add to cart".
+5. Once selecting a specific lab test, you can view the details and test duration and add it to cart by clicking "Add to cart".
+6. You can proceed with the payment by by clicking "Proceed" or by clicking the cart symbol on the top right corner and then click "Proceed to Checkout". AFter that you can enter the patient details and then proceed.
+
+# Live Hospitals
+1. In the "Live" section, you can select the hospitals to view their doctors, and by clicking on the doctor you can view their live/current token status.
+
+# Electronic Health Records
+1. You can view your health data or health history by clicking on "See All" and then selecting the particular file.
+2. You can add or delete your file in here.
+
+# How to View Past Consultations
+1. Go to the "Settings" section in the app.
+2. Tap on "Booking History".
+3. You will see a list of all your past and upcoming appointments.
+
+# Payment Information
+- Payments are handled securely within the app at the time of booking.
+- We accept all major credit cards, debit cards, and UPI payments.
+- You will receive a receipt via email after a successful payment.
+
+# Data Privacy and Security
+- You can read about our privacy policy in the "Settings" sections and then clicking "Privacy Policy".
+- Your personal health information is confidential and is never shared with third parties without your consent.
+
+# About & Contact
+- You can find our address, contact and email by clicking on "Settings" section and then "About & Contact Us".
